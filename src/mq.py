@@ -5,7 +5,7 @@ import json
 from src.Send import Send
 from src.predict1 import Predict
 import os
-connection = pika.BlockingConnection(pika.ConnectionParameters('localhost'))
+connection = pika.BlockingConnection(pika.ConnectionParameters(host='localhost', heartbeat=0))
 # 创建管道
 channel = connection.channel()
 # 创建队列Predict
