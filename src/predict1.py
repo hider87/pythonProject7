@@ -36,4 +36,5 @@ class Predict:
         self.list1.clear()
         res1 = res[0:len(res)-1]
         res1 = '{' + res1 + '}'
+        self.list1.clear()
         return res1
