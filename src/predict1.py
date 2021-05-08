@@ -1,10 +1,11 @@
 from keras.models import load_model
 # import numpy as np
-
+from src.model import TextCNN
 from src.preprocess import preprocesser
 
 
 class Predict:
+    f1_score = TextCNN()
     model = load_model("../result/CNN_model1.h5")
     pre = preprocesser()
     testingSet_path = "../data/cnews.simple1.txt"
@@ -31,10 +32,11 @@ class Predict:
         head = '\''
         i = 0
         for val in self.list1:
-            ans = i+1
-            res = res+"\"" + str(ans) + "\":"+"\"" + self.categories[val] + "\","
+            i = i + 1
+            res = res + "\"" + str(i) + "\":" + "\"" + self.categories[val] + "\","
         self.list1.clear()
-        res1 = res[0:len(res)-1]
+        # res1 = res[0:len(res) - 1]
+        res1 = res + "\"F1_score" + "\":" + "\"" + self.f1_score.f1_score() + "\""
         res1 = '{' + res1 + '}'
         self.list1.clear()
         return res1
